@@ -1,55 +1,27 @@
-const net = require("net");
-// establishes a connection with the game server
-const connect = function () {
-    const conn = net.createConnection({
-      host: "165.227.47.243",
-      port:50541
-    });
-    conn.on("connect", () => {
-        console.log("Successfully connected to game server");
-        conn.write("Name: ELI");
-    });
-  
-  conn.write("Name: ELI");
+const net = require('net');
+const {IP, PORT, NAME} = require('./constants');
 
-  // to see what the passed in data
-  conn.on("data", (data) => {
-    console.log("data: ", data);
+const connect = function() {
+  const conn = net.createConnection({
+    host: IP,
+    port: PORT
   });
 
-
-  conn.on("connect", () => {
-    conn.write("Name: ELI");
+  conn.on('connect', (connect) => {
+    console.log('Snake Game Server says >>');
   });
 
-// // sending move up command
-//     conn.on("connect", () => {
-//       conn.write("Move: up");
+  conn.on('connect', () => {
+    conn.write(`Name: ${NAME}`);
+  });
 
-//       // setInterval to move up snake every 50ms
-//       setInterval(() => {
-//         conn.write("Move: up");
-//       }, 50);
+  conn.on('data', (data) => {
+    console.log('You are done!!!');
+  });
 
-//       // successive msgs once moving up
-//       console.log("Moving up");
-//       console.log("Moving up in the world");
+  conn.setEncoding('utf8');
 
-//       // delayed msgs once moving up
-//       setTimeout(() => {
-//         console.log("Moving up");
-//       }, 50);
-
-//       setTimeout(() => {
-//         console.log("Moving up in the world");
-//       }, 100);
-//     });
-
-
-    // interpret incoming data as text
-    conn.setEncoding("utf8");
-  
-    return conn;
+  return conn;
 };
 
-  module.exports = {connect};
+module.exports = { connect };
