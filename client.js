@@ -7,10 +7,10 @@ const connect = function () {
     });
     conn.on("connect", () => {
         console.log("Successfully connected to game server");
-        conn.write("Name: PTA");
+        conn.write("Name: ELI");
     });
   
-  conn.write("Name: PTA");
+  conn.write("Name: ELI");
 
   // to see what the passed in data
   conn.on("data", (data) => {
@@ -19,7 +19,7 @@ const connect = function () {
 
 
   conn.on("connect", () => {
-    conn.write("Name: PTA");
+    conn.write("Name: ELI");
   });
 
 // // sending move up command
